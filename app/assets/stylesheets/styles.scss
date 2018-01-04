@@ -1,0 +1,19 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+
+  .navlinks {
+    a {
+      padding: 0 12px;
+    }
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+.link {
+  margin: 12px auto;
+}

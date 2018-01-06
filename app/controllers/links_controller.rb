@@ -38,9 +38,14 @@ def create
 
   end
 
-	def index
-		@links = Link.all
-	end	
+def index
+  @tags = Link.tag_counts_on(:tags)
+  if params[:tag]
+    @links = Link.tagged_with(params[:tag])
+  else
+    @links = Link.all
+  end
+end
 
   def show
   	
@@ -68,6 +73,10 @@ def update
   end
 end
 
+  def tag_cloud
+    @tags = Link.tag_counts_on(:tags)
+  end
+  
 def destroy
    link = Link.find_by(id: params[:id])
 
@@ -82,7 +91,7 @@ end
   private
 
 def link_params
-  params.require(:link).permit(:title, :url, :description, :image)
+  params.require(:link).permit(:title, :url, :description, :image, :tag_list)
 end
 
 def set_variables

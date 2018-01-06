@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
 
   root 'links#index'
+  resources :tags, only: [:index, :show]
 
   resources :links, except: :index do
     resources :comments, only: [:create, :edit, :update, :destroy]

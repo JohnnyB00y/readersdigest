@@ -10,8 +10,16 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-sm-2">col-sm-2</div>
+    <div class="col-sm-2">
+      <div class="box">
+        <h4 class="lead">Tags</h4>
+      <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+      <%= link_to tag.name, { :action => :index, :tag => tag.name  }, :class => css_class %>
+      <% end %>
 
+      </div>
+    </div>
+        
 
     <div class="col-sm-8">
       <div class="box">
@@ -28,6 +36,7 @@
             </div>
             <div class="metadata">
               <span class="time-created">
+                <%= render link.tags %>
                 <%= time_ago_in_words(link.created_at) %> ago
                 <% if user_signed_in? && current_user.owns_link?(link) %>
               <span class="edit-link">
@@ -45,7 +54,7 @@
 <% end %>
         </div>
       </div>
-    <div class="col-sm-2">col-sm-2</div>
+    <div></div class="col-sm-2">col-sm-2</div>
 
 
 </div>

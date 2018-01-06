@@ -1,2 +1,24 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+
+<div class="container">	
+	<div class="box">
+<h2> 
+            <img class="rounded" style="height:50px" src="<%= @user.image%>" alt="Generic placeholder image">
+
+<%= @user.first_name%><% "" %> <%= @user.last_name %>'s profile page.</h2>
+
+</div>
+
+<br>
+<br>
+	<div class="box">
+
+<h4> <%= @user.first_name %>'s posts</h4>
+
+<% @user.links.each do |link| %>
+
+	<%= link_to link.title, links_path(link) %>
+<%= time_ago_in_words(link.created_at) %>
+	<% end %>
+
+	</div>
+</div>

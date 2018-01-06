@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'users/show'
+  
 
   root 'links#index'
 
@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   get '/comments' => 'comments#index'
 
 devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-
+resources :users
 end

@@ -2,17 +2,41 @@ class LinksController < ApplicationController
 	 before_action :authenticate_user!, except: [:index]
 def new
   @link = Link.new
-end
+
+
+      end
+      
 
 def create
   @link = current_user.links.new(link_params)
 
-  if @link.save
-    redirect_to root_path, notice: 'Link successfully created'
-  else
-    render :new
+  # if @link.save
+  #   redirect_to root_path
+  # else
+  #   render :new
+  # end
+        # if s = Link.find_similar_by_url(@link.url)
+        #   if s.is_recent?
+        #   # user won't be able to submit this link as new, so just redirect
+        #   # them to the previous link
+        #   flash[:success] = "This URL has already been submitted recently."
+        #   return redirect_to root_path
+        # else
+        #   # user will see a warning like with preview screen
+        #   @link.already_posted_link = s
+        # end
+        # end
+
+    
+      if @link.save
+        return redirect_to link_path(@link), notice: 'Link successfully created'
+      else
+
+        render :new
+      end
+
+
   end
-end
 
 	def index
 		@links = Link.all

@@ -7,6 +7,24 @@
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
     </div>
+
+    <div class="form-group">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, class: 'form-control' %>
+    </div>
+        <div class="form-group">
+        </div>
+
+    <div class="form-group">
+      <%= f.label :image %>
+       <%= f.url_field :image, class: "form-control", placeholder: "image url for profile" %>
+    </div>
+
     <div class="form-group">
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
@@ -17,4 +35,7 @@
     </div>
      <%= f.submit 'Sign up', :class => 'button right' %>
   <% end %>
+    or !
+    
+   <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
 </div>

@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 	
+  devise :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :comments
   has_many :links, dependent: :destroy
@@ -16,5 +17,16 @@ class User < ApplicationRecord
   	self == comment.user
   end
 
+  def self.from_omniauth(auth)
+  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    user.email = auth.info.email
+    user.image = auth.info.image
+    user.first_name = auth.info.first_name
+    user.last_name = auth.info.last_name
+    user.provider = auth.provider
+    user.uid = auth.uid
+    user.password = Devise.friendly_token[0,20]
+  end
+end
   
 end

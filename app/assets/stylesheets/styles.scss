@@ -2,7 +2,7 @@ nav {
   display: flex;
   justify-content: space-between;
   padding: 12px 0;
-
+  background-color: #fff;
   .navlinks {
     a {
       padding: 0 12px;
@@ -15,5 +15,46 @@ ul {
 }
 
 .link {
-  margin: 12px auto;
+  margin: 6px 12px 6px 12px;
+}
+
+.box {
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid #e8e8e8;
+}
+
+body {
+  background: #f8f9fa
+}
+
+.lead {
+  margin: 10px 10px 10px 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.metadata {
+  margin: 40px 5px 10px 5px
+}
+
+.linkimage {
+  max-width: 70px;
+  margin: 8px 10px 8px 10px;
+}
+
+.jumbotron {
+  background: #fff;
+  margin: 10px;
+  border: 2px solid #87E6DF;
+
+}
+
+.media {
+  margin: 5px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.media-body {
+  margin: 10px
 }

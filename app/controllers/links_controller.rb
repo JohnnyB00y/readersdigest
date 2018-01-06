@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-	 before_action :authenticate_user!
+	 before_action :authenticate_user!, except: [:index]
 def new
   @link = Link.new
 end
@@ -58,7 +58,7 @@ end
   private
 
 def link_params
-  params.require(:link).permit(:title, :url, :description)
+  params.require(:link).permit(:title, :url, :description, :image)
 end
 
 def set_variables

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-   before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index]
 	before_action :set_variables, only: [:edit, :update, :destroy]
 
   def index

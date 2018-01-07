@@ -4,13 +4,13 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
+gem "font-awesome-rails"
 
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'acts-as-taggable-on'
 gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
-
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -35,7 +35,6 @@ gem 'devise', :github => 'plataformatec/devise', :branch => 'master'
 # gem 'capistrano-rails', group: :development
 gem 'figaro'
 gem 'omniauth'
-
 gem 'omniauth-facebook'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,0 +1,78 @@
+
+
+
+<div class="container">
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Senzubean</h1>
+    <p class="lead">Community for the intellectuals, ranking the internets best resources. </p>
+  </div>
+</div>
+
+
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="box">
+        <h4 class="lead">Tags</h4>
+      <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+      <%= link_to tag.name, { :action => :index, :tag => tag.name  }, :class => css_class %>
+      <% end %>
+
+      </div>
+    </div>
+        
+
+    <div class="col-sm-8">
+      <div class="box">
+        <p class="lead">Today's Posts!</p>
+<% @links.each do |link|  %>
+          <div class="media">
+            <img class="linkimage rounded" src="<%= link.image %>" alt="Generic placeholder image">
+            <div class="media-body">
+              <h5 class="mt-0">
+                <%= link_to link.title, (link.url? ? link.url : link) %>
+              </h5>
+              <%=  link.description %>
+              <%= link_to "discussion", link_path(link) %>
+            </div>
+            <span class="points">
+              <%= pluralize(link.points, 'point') %> by <%= link.user.first_name %>
+            </span>
+            <div class="metadata">
+
+              <span class="time-created">
+                <%= render link.tags %>
+                <%= time_ago_in_words(link.created_at) %> ago
+              <% if user_signed_in? %>
+                <span class="upvote-link">
+                  <% if !current_user.upvoted?(link) %>
+                  <%= link_to "Up (#{link.upvotes})", upvote_link_path(link), method: :post %>
+                  <% else %>
+                  <%= link_to "Down (#{link.upvotes})", upvote_link_path(link), method: :post %>
+                  <% end %>
+                </span>
+              <% end %>
+                <% if user_signed_in? && current_user.owns_link?(link) %>
+
+              <span class="edit-link">
+                <%= link_to "edit", edit_link_path(link) %>
+              </span>
+
+              <span class="delete-link">
+                <%= link_to "delete", link, method: :delete, data: { confirm: "Are you sure?" } %>
+              </span>
+            <% end %>
+              </span>
+          </div>
+                
+          </div>
+<% end %>
+        </div>
+      </div>
+    <div></div class="col-sm-2">col-sm-2</div>
+
+
+</div>
+</div>

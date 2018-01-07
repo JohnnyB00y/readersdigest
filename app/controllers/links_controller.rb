@@ -1,11 +1,19 @@
 class LinksController < ApplicationController
-	 before_action :authenticate_user!, except: [:index]
+	 before_action :authenticate_user!, except: [:index, :show]
 def new
   @link = Link.new
 
 
       end
       
+def newest
+  @tags = Link.tag_counts_on(:tags)
+  if params[:tag]
+    @links = Link.newest.tagged_with(params[:tag])
+  else
+    @links = Link.newest
+  end
+end
 
 def create
   @link = current_user.links.new(link_params)
@@ -41,9 +49,9 @@ def create
 def index
   @tags = Link.tag_counts_on(:tags)
   if params[:tag]
-    @links = Link.tagged_with(params[:tag])
+    @links = Link.hottest.tagged_with(params[:tag])
   else
-    @links = Link.all
+    @links = Link.hottest
   end
 end
 
@@ -88,6 +96,18 @@ def destroy
   end
 end
 
+def upvote
+  link = Link.find_by(id: params[:id])
+
+  if current_user.upvoted?(link)
+    current_user.remove_vote(link)
+  else
+    current_user.upvote(link)
+  end
+  link.calc_hot_score
+  redirect_to root_path
+end
+
   private
 
 def link_params
@@ -98,5 +118,7 @@ def set_variables
   @link = Link.find_by(id: params[:link_id])
   @comment = @link.comments.find_by(id: params[:id])
 end
+
+
 
 end

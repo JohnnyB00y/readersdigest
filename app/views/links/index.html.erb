@@ -1,3 +1,6 @@
+
+
+
 <div class="container">
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
@@ -23,7 +26,6 @@
 
     <div class="col-sm-8">
       <div class="box">
-        <p class="lead">Today's Posts!</p>
 <% @links.each do |link|  %>
           <div class="media">
             <img class="linkimage rounded" src="<%= link.image %>" alt="Generic placeholder image">
@@ -34,11 +36,25 @@
               <%=  link.description %>
               <%= link_to "discussion", link_path(link) %>
             </div>
+            <span class="points">
+              <%= pluralize(link.points, 'point') %> by <%= link.user.first_name %>
+            </span>
             <div class="metadata">
+
               <span class="time-created">
                 <%= render link.tags %>
                 <%= time_ago_in_words(link.created_at) %> ago
+              <% if user_signed_in? %>
+                <span class="upvote-link">
+                  <% if !current_user.upvoted?(link) %>
+                  <%= link_to "Up (#{link.upvotes})", upvote_link_path(link), method: :post %>
+                  <% else %>
+                  <%= link_to "Down (#{link.upvotes})", upvote_link_path(link), method: :post %>
+                  <% end %>
+                </span>
+              <% end %>
                 <% if user_signed_in? && current_user.owns_link?(link) %>
+
               <span class="edit-link">
                 <%= link_to "edit", edit_link_path(link) %>
               </span>
@@ -54,7 +70,7 @@
 <% end %>
         </div>
       </div>
-    <div></div class="col-sm-2">col-sm-2</div>
+    <div class="col-sm-2">col-sm-2</div>
 
 
 </div>

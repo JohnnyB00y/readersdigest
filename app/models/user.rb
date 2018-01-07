@@ -5,12 +5,24 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 	
   devise :omniauthable, :omniauth_providers => [:facebook]
-
+  has_many :votes
   has_many :comments
   has_many :links, dependent: :destroy
   
   def owns_link?(link)
      self == link.user
+  end
+
+  def upvote(link)
+  votes.create(upvote: 1, link: link)
+  end
+
+  def upvoted?(link)
+    votes.exists?(upvote: 1, link: link)
+  end
+
+  def remove_vote(link)
+    votes.find_by(link: link).destroy
   end
 
   def owns_comment?(comment)

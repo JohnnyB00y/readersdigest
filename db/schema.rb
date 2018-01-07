@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180106195355) do
+ActiveRecord::Schema.define(version: 20180106223714) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20180106195355) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "link_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "links", force: :cascade do |t|
     t.string "title"
     t.string "url"
@@ -30,6 +37,8 @@ ActiveRecord::Schema.define(version: 20180106195355) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
+    t.integer "points", default: 1
+    t.float "hot_score", default: 0.0
     t.index ["user_id"], name: "index_links_on_user_id"
   end
 
@@ -78,6 +87,16 @@ ActiveRecord::Schema.define(version: 20180106195355) do
     t.text "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "link_id"
+    t.integer "upvote", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["link_id"], name: "index_votes_on_link_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
 end

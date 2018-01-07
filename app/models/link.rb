@@ -92,6 +92,10 @@ end
     self.created_at >= RECENT_DAYS.days.ago
   end
 
+  def comment_count
+    comments.length
+  end
+
 	RECENT_DAYS = 30
 
   # ----------------> HOT SCORE <-------------

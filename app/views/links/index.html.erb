@@ -34,23 +34,36 @@
                                 <a href="#" class="sh-section__name">Envato_Studio</a>
                                 <span class="sh-section__passed">2 hours ago</span>
                             </div>
-                            <a href="#" class="sh-section__link sh-btn-icon"><i class="fa fa-link" aria-hidden="true"></i>
-</a>
+                            <a href="#" class="sh-section__link sh-btn-icon"><i class="fa fa-link" aria-hidden="true"></i></a>  
+<%= render link.tags %>
                         </div>
                         <div class="sh-section__content">
                             <h5 class="mt-0">
                               <%= link_to link.title, (link.url? ? link.url : link) %>
                             </h5>
 
+
                             <%=  link.description %>
-                            <div class="sh-section__image">
-                                <a href="single_post.html"><img src="images/microphone-1209816_1920.jpg" alt=""></a>
-                            </div>
+
                         </div>
                         <div class="sh-section__footer">
-                            <a href="#" class="sh-section__btn-upvote sh-btn-icon"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+                            <!-- Upvote! -->
+                            <% if user_signed_in? %>
+                                <% if !current_user.upvoted?(link) %>
+                               <%= link_to upvote_link_path(link), method: :post,  class: "sh-section__btn-upvote sh-btn-icon" do %>
+                                  <i class="fa fa-arrow-up" aria-hidden="true"></i><span><%= link.upvotes %></span>
+                                <% end %>
+                                <% else %>
+                                 <%= link_to upvote_link_path(link), method: :post,  class: "sh-section__btn-upvote sh-btn-icon" do %>
+                                    <i class="fa fa-arrow-down" aria-hidden="true"></i><span><%= link.upvotes %></span>
+                                  <% end %>
+                                <% end %>
+                            <% end %>
+                            <!-- Upvote end -->
                             <a href="#" class="sh-section__btn-like sh-btn-icon"><i class="fa fa-heart" aria-hidden="true"></i><span>1,274</span></a>
-                            <a href="#" class="sh-section__btn-comment sh-btn-icon"><i class="fa fa-comments" aria-hidden="true"></i><span>982</span></a>
+                            <%= link_to link_path(link), class: "sh-section__btn-comment sh-btn-icon" do %>
+                              <i class="fa fa-comments" aria-hidden="true"></i><span><%= pluralize(link.comment_count, 'comment' ) %></span>
+                            <% end %>
                             <a href="#" class="sh-section__btn-share sh-btn-icon"><i class="fa fa-share-alt" aria-hidden="true"></i>
 </a>
                         </div>

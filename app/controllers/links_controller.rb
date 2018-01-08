@@ -1,5 +1,8 @@
 class LinksController < ApplicationController
+  
 	 before_action :authenticate_user!, except: [:index, :show]
+  before_action :tag_cloud
+
 def new
   @link = Link.new
 
@@ -82,7 +85,7 @@ def update
 end
 
   def tag_cloud
-    @tags = Link.tag_counts_on(:tags)
+   @tags = Link.tag_counts_on(:tags).order('count desc').limit(20)
   end
   
 def destroy

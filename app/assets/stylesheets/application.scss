@@ -10,6 +10,13 @@ a:hover {
   outline: 0;
 }
 
+.frontpagetext {
+    font-size: 16px;
+    line-height: 25px;
+    color: #999;
+    font-weight: 300;
+    margin: 0px 40px 10px;
+}
 ul {
   list-style-type: none;
 }
@@ -57,7 +64,7 @@ a {
 a:hover,
 a:focus {
   color: #23527c;
-  text-decoration: underline;
+  text-decoration: none;
 }
 a:focus {
   outline: thin dotted;
@@ -212,6 +219,9 @@ section {
 .sh-section__name:active,
 .sh-section__name:link {
   color: #1e1633;
+  a{
+    color:#999 !important;
+  }
 }
 .sh-section__passed {
   display: block;
@@ -219,6 +229,9 @@ section {
 }
 .sh-section__link {
   margin-left: auto;
+    a{
+    color:#999 !important;
+  }
 }
 .sh-section__link i {
   font-size: 18px;
@@ -431,15 +444,21 @@ section {
   font-size: 20px;
 }
 .sh-section__footer {
-  padding-top: 20px;
-  padding-bottom: 30px;
+  padding-top: 0px;
+  padding-bottom: 8px;
   flex-wrap: wrap;
   align-items: center;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
+  text-decoration: none;
+  a {
+    color:#999
+  }
 }
+
+
 .sh-section__footer .sh-btn-icon {
   margin-top: 10px;
 }
@@ -481,6 +500,9 @@ section {
 .sh-section__btn-awesome:active,
 .sh-section__btn-awesome:link {
   color: #ffffff;
+    a{
+    color:#999 !important;
+  }
 }
 .sh-section__btn-awesome:hover {
   background-color: #ffffff;
@@ -552,7 +574,9 @@ section {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  
+  a {
+    color:black
+  }
 }
 .sh-content-head__flex-off {
   display: block;

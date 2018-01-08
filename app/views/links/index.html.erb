@@ -3,37 +3,40 @@
 
   <!--content head-->
     <div class="headsection">
+      <div class = "container">
         <div class="row">
-          <div class="col-sm-8">
-            <div class="sh-content-head">
-                <h1 style="margin: auto;">Independent</a> article & blog posts, sorted by
-                    <div class="sh-content-head__popularity-btn">
-                        <span>popularity</span>
-                        <div class="sh-content-head__popularity-content">
-                            <div class="sh-content-head__popularity-head">
-                                <span>Popularity</span>
-                                <span>Currently Selected</span>
-                            </div>
-                            <div class="sh-content-head__popularity-body">
-                                <ul>
-                                    <li><a href="#">Newest first</a></li>
-                                    <li><a href="#">Highest scoring</a></li>
-                                </ul>
-                                                
-                            </div>
-                        </div>
-                            </div>
-                            </h1>
+            <div class="col-sm-8">
+              <div class="sh-content-head">
+                  <h1 style="margin: 10px 35px 0px;">Discover</a> awesome content from around the web, sorted by
+                      <div class="sh-content-head__popularity-btn">
+                          <span>popularity</span>
+                          <div class="sh-content-head__popularity-content">
+                              <div class="sh-content-head__popularity-head">
+                                  <span>Popularity</span>
+                                  <span>Currently Selected</span>
+                              </div>
+                              <div class="sh-content-head__popularity-body">
+                                  <ul>
+                                      <li><a href="#">Newest first</a></li>
+                                      <li><a href="#">Highest scoring</a></li>
+                                  </ul>
+                                                  
+                              </div>
+                          </div>
+                              </div>
+                              </h1>
+                              <p class="frontpagetext">
+                                <br>
+                              Elephanzo surfaces the best new products, every day. It's a place for product-loving enthusiasts to share and geek out about the latest mobile apps, websites, hardware projects, and tech creations.</p>
                     </div>
-                  </div>
+              </div>
               <div class="col-sm-4">
                 <img src="https://openclipart.org/image/2400px/svg_to_png/217000/happy-elephant-running.png" class="rounded" style="width:250px; height: 250px">
-                                           
-                   
               </div>
-
             </div>
-          </div>
+        </div>
+    </div>
+
             <!--sections-->
 
 
@@ -44,10 +47,10 @@
             <div class="tagsection">
               <div class="box">
 
-                <h3 class="lead">Tags</h3>
+                <h3 class="lead">Most Popular Tags</h3>
 
               <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
-            <span class="badge badge-pill badge-default">  <%= link_to tag.name, { :action => :index, :tag => tag.name  }, :class => css_class %> </span>
+             <%= link_to tag.name, { :action => :index, :tag => tag.name  }, :class => css_class %> 
               <% end %>
               </div>
           </div>
@@ -55,8 +58,6 @@
         
 
     <div class="col-sm-8">
-             
-  
                 <% @links.each do |link|  %>
                 <div class="sh-section__item ">
                     <div class="sh-section">
@@ -70,12 +71,10 @@
                             </div>
                             <a href="#" class="sh-section__link sh-btn-icon"><i class="fa fa-link" aria-hidden="true"></i></a>  
                         </div>
-<!--                         <div class="sh-section__content">
-
- time_ago_in_words(link.created_at)   ago
-                             link.description 
-
-                        </div> -->
+                               <!--   <div class="sh-section__content"> 
+                                time_ago_in_words(link.created_at)   ago
+                                link.description 
+                                </div> -->
                         <div class="sh-section__footer">
                             <!-- Upvote! -->
                             <% if user_signed_in? %>

@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 gem "font-awesome-rails"
-
+gem 'social-share-button'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'acts-as-taggable-on'
 gem 'rails', '~> 5.1.4'

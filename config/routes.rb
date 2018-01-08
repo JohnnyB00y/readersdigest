@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     post :upvote, on: :member
 
   end
+  resources :tags, only: [:index, :show]
 
   get '/comments' => 'comments#index'
   	get '/newest' => 'links#newest', as: :newest_links 

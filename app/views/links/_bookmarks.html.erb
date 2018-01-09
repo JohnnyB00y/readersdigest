@@ -1,0 +1,5 @@
+<% if user_signed_in? && current_user.bookmarks?(@link) %>
+<%= link_to "Unbookmark", link_bookmark_path(@link), method: :delete %>
+<% else %>
+<%= link_to "Bookmark", link_bookmark_path(@link), method: :post %>
+<% end %>

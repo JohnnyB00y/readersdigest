@@ -2,6 +2,7 @@ class Link < ApplicationRecord
   scope :hottest, -> { order(hot_score: :desc) }
   scope :newest, -> { order(created_at: :desc) }
   has_many :votes
+  has_many :bookmarks
   acts_as_taggable_on :tags
   belongs_to :user
   has_many :comments, :dependent => :destroy

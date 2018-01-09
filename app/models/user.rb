@@ -8,9 +8,14 @@ class User < ApplicationRecord
   has_many :votes
   has_many :comments
   has_many :links, dependent: :destroy
+  has_many :bookmarks
   
   def owns_link?(link)
      self == link.user
+  end
+
+  def bookmarks?(link)
+    link.bookmarks.where(user_id: id).any?
   end
 
   def upvote(link)

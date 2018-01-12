@@ -16,6 +16,7 @@
         <%= link_to "new", newest_links_path, class: "nav-link" %>
       </li>
     </ul>
+
     		<ul class="nav navbar-nav navbar-right my-2 my-lg-0">
 				<% if user_signed_in? %>
 					<li><%= link_to('My Account', edit_user_registration_path) %></li>

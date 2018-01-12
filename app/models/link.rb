@@ -1,4 +1,5 @@
 class Link < ApplicationRecord
+  include AlgoliaSearch
   scope :hottest, -> { order(hot_score: :desc) }
   scope :newest, -> { order(created_at: :desc) }
   has_many :votes
@@ -34,8 +35,16 @@ class Link < ApplicationRecord
 
 	  end
 
+  algoliasearch do
+    attribute :title, :description, :tags
+  end
+
   def upvotes
     votes.sum(:upvote)
+  end
+
+  def popular_authors
+    bestauthors = links.author.all.count(desc)
   end
 
   def calc_hot_score

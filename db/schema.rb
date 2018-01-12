@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180109011851) do
+ActiveRecord::Schema.define(version: 20180112143641) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20180109011851) do
     t.string "image"
     t.integer "points", default: 1
     t.float "hot_score", default: 0.0
+    t.string "author"
     t.index ["user_id"], name: "index_links_on_user_id"
   end
 

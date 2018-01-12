@@ -1,8 +1,11 @@
 class User < ApplicationRecord
+  include AlgoliaSearch
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+
 	
   devise :omniauthable, :omniauth_providers => [:facebook]
   has_many :votes
@@ -12,6 +15,14 @@ class User < ApplicationRecord
   
   def owns_link?(link)
      self == link.user
+  end
+
+  algoliasearch do
+    attribute :name
+  end
+
+  def name
+    first_name + '' + last_name
   end
 
   def bookmarks?(link)

@@ -1,13 +1,13 @@
 class LinksController < ApplicationController
   
-	 before_action :authenticate_user!, except: [:index, :show]
+	before_action :authenticate_user!, except: [:index, :show]
   before_action :tag_cloud
 
 def new
   @link = Link.new
+end
 
 
-      end
       
 def newest
   @tags = Link.tag_counts_on(:tags)
@@ -114,7 +114,7 @@ end
   private
 
 def link_params
-  params.require(:link).permit(:title, :url, :description, :image, :tag_list)
+  params.require(:link).permit(:title, :url, :description, :image, :author, :tag_list)
 end
 
 def set_variables

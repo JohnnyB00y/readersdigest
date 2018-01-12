@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get '/comments' => 'comments#index'
   	get '/newest' => 'links#newest', as: :newest_links 
+  get '/search' => 'searches#search'
 devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 resources :users
 end

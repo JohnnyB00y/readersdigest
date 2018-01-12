@@ -1,3 +1,118 @@
 // Place all the styles related to the comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.sh-add-comment {
+  padding: 26px 30px;
+  margin-bottom: 30px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  -webkit-box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.1);
+}
+.sh-add-comment form input.form-control {
+  padding: 0;
+}
+.sh-add-comment__content {
+  margin-top: 50px;
+  align-items: center;
+  flex-wrap: wrap;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+.sh-add-comment__content > span {
+  color: #9fa3ac;
+}
+.sh-add-comment__btn-addimg {
+  margin-right: 15px;
+}
+.sh-add-comment__btn-save {
+  margin-left: auto;
+}
+.sh-add-comment__btn-save span {
+  margin-right: 15px;
+}
+.sh-add-comment__btn-save i {
+  font-size: 20px;
+}
+.sh-comments {
+  margin-bottom: 30px;
+}
+.sh-comments__head {
+  padding-bottom: 20px;
+  border-bottom: solid 1px #e6e9f1;
+  flex-wrap: wrap;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+.sh-comments__title {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.sh-comments__options {
+  margin-left: auto;
+  align-items: center;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+.sh-comments__options span {
+  margin-right: 30px;
+}
+.sh-comments__options .sh-btn-icon:not(:last-child) {
+  margin-right: 30px;
+}
+.sh-comments__section {
+  margin-top: 30px;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+.sh-comments__section p {
+  margin-top: 15px;
+}
+.sh-comments__avatar {
+  margin-right: 30px;
+}
+.sh-comments__content {
+  width: 100%;
+}
+.sh-comments__content > a > img {
+  max-width: 266px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+.sh-comments__name {
+  white-space: pre;
+  font-weight: 600;
+}
+.sh-comments__name:visited,
+.sh-comments__name:active,
+.sh-comments__name:link {
+  color: #1e1633;
+}
+.sh-comments__passed {
+  color: #9fa3ac;
+}
+.sh-comments__info {
+  margin-top: 5px;
+}
+.sh-comments__info .sh-btn-icon {
+  margin-right: 30px;
+  margin-top: 10px;
+}
+.sh-comments__info .sh-btn-icon span {
+  margin-left: 15px;
+}
+.sh-comments__btn-reply {
+  display: block;
+  float: right;
+}

@@ -1,68 +1,130 @@
-<section class="link-thread">
-  <header>
-    <h4>
-      <%= @link.title %>
-    </h4>
+<br>
+<div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <!--section-->
+                <div class="sh-section">
+                    <div class="sh-section__head">
+                        <a href="#"><img src="<%= @link.image %>" class="sh-section__avatar sh-avatar" alt=""></a>
+                        <div>
+                            <a href="#" class="sh-section__name"><%= @link.title %></a>
+                            <span class="sh-section__passed"><%= time_ago_in_words(@link.created_at)%> ago</span>
+                        </div>
+                        <a href="#" class="sh-section__link sh-btn-icon"><i class="icon-Link"></i></a>
+                    </div>
+                    <div class="sh-section__content">
+                        <p><%= @link.description %></p>
+                    </div>
+                        <div class="sh-section__footer">
+                            <!-- Upvote! -->
+                            <% if user_signed_in? %>
+                                <% if !current_user.upvoted?(@link) %>
+                               <%= link_to upvote_link_path(@link), method: :post,  class: "sh-section__btn-upvote sh-btn-icon" do %>
+                                  <i class="fa fa-arrow-up" aria-hidden="true"></i><span><%= @link.upvotes %></span>
+                                <% end %>
+                                <% else %>
+                                 <%= link_to upvote_link_path(@link), method: :post,  class: "sh-section__btn-upvote sh-btn-icon" do %>
+                                    <i class="fa fa-check" style="color: green;" aria-hidden="true"></i><span><%= @link.upvotes %></span>
+                                  <% end %>
+                                <% end %>
+                            <% end %>
+                            <!-- Upvote end -->
 
-    <% if @link.description? %>
-      <p>
-        <%= @link.description %>
-      </p>
-    <% end %>
-  </header>
+                            <a href="#" class="sh-section__btn-like sh-btn-icon"><i class="fa fa-heart" aria-hidden="true"></i><span>  <%= render partial: "bookmarks" %></span></a>
+                            <%= link_to link_path(@link), class: "sh-section__btn-comment sh-btn-icon" do %>
+                              <i class="fa fa-comments" aria-hidden="true"></i><span><%= pluralize(@link.comment_count, 'comment' ) %></span>
+                            <% end %>
+                                <div class="metadata">
+                                  <span class="time-created">
+                                    <%# if user_signed_in? && current_user.owns_link?(link) %>
+                                  <span class="edit-link">
+                                    <%#= link_to "edit", edit_link_path(link) %>
+                                  </span>
 
-    <% if user_signed_in? %>
-    <div class="add-comment row">
-      <div class="col-sm-6">
-        <%= form_for :comment, url: link_comments_path(@link) do |f| %>
+                                  <span class="delete-link">
+                                    <%#= link_to "delete", link, method: :delete, data: { confirm: "Are you sure?" } %>
+                                  </span>
+                                <%# end %>
+                                  </span>
+                              </div>
+                          <a href="#" class="sh-section__btn-share sh-btn-icon"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+
+                        </div>
+                      </div>
+<!-- comments start here -->
+
+
+
+<% if user_signed_in? %>
+    <div class="sh-add-comment">
+
+        <%= form_for :comment, url: link_comments_path(@link), :html => {:class => ''}  do |f| %>
           <div class="form-group">
-            <%= f.text_area :body, class: "form-control", placeholder: "The quick brown fox...", rows: 10, required: true %>
+            <%= f.text_area :body, class: "form-control ttg-border-none", placeholder: "The quick brown fox...", rows: 3, required: true %>
           </div>
 
-          <div class="form-group">
+
+                    <div class="sh-add-comment__content">
+
+                        <div class="sh-add-comment__btn-addimg sh-btn-icon"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></div>
+
+                        <span>Remember Community Guidelines</span>
+                        <div class="sh-add-comment__btn-save sh-btn-icon"><span>180</span><i class="icon-Submit_Tick"></i></div>
+                                  <div class="form-group">
             <%= f.button "add comment", class: "btn btn-success" %>
-          </div>
+          </div>  
+                    </div>
+            </div>
+
         <% end %>
-      </div>
-    </div>
   <% end %>
-<div class="all-comments row">
-    <div class="col-sm-12">
-      <% if @comments.present? %>
-        <h3>
-            Comments
-        </h3>
-      <% end %>
-      
-      <% @comments.each do |comment| %>
-        <div class="comment">
-          <p class="comment-owner">
-            <strong>
-              <%= comment.user.email %>
-            </strong>
+                <div class="sh-comments">
+                    <div class="sh-comments__head">
+                        <div class="sh-comments__title"><%= pluralize(@link.comment_count, 'comment' ) %></div>
+                        <div class="sh-comments__options">
+                            <span>Sort by:</span>
+                            <a href="#" class="sh-comments__btn-image sh-btn-icon"><i class="icon-Image"></i></a>
+                            <a href="#" class="sh-comments__btn-upvote sh-btn-icon"><i class="icon-Upvote"></i></a>
+                            <a href="#" class="sh-comments__btn-down sh-btn-icon"><i class="icon-Downvote"></i></a>
+                            <a href="#" class="sh-comments__btn-expand sh-btn-icon"><i class="icon-Expand_all"></i></a>
+                        </div>
+                    </div>
+                    <!--comment-->     
+                    <% @comments.each do |comment| %>
+                    <div class="sh-comments__section">
+                        <a href="#" ><img src="<%= comment.user.image %>" class="sh-comments__avatar sh-avatar" alt=""></a>
+                        <div class="sh-comments__content">
+                            <a href="#" class="sh-comments__name"><%= comment.user.name %> </a>
+                            <span class="sh-comments__passed"><%= time_ago_in_words(comment.created_at) %> ago</span>
+                            <p><%= comment.body %> </p>
+                            <div class="sh-comments__info">
+                                <% if user_signed_in? && current_user.owns_comment?(comment) %>
+                                      <span class="edit-comment">
+                                        <%= link_to 'edit',  edit_link_comment_path(@link, comment) %>
+                                      </span>
 
-            <span class="comment-created small">
-              <%= time_ago_in_words(comment.created_at) %> ago
-            </span>
-            <% if user_signed_in? && current_user.owns_comment?(comment) %>
-  <span class="edit-comment">
-    <%= link_to 'edit',  edit_link_comment_path(@link, comment) %>
-  </span>
+                                      <span class="delete-comment">
+                                        <%= link_to 'delete', link_comment_path(@link, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+                                      </span>
+                                    <% end %>
+<!--                                 <a href="#" class="sh-comments__btn-upvote sh-btn-icon"><i class="icon-Upvote"></i><span>901</span></a>
+                                <a href="#" class="sh-comments__btn-down sh-btn-icon"><i class="icon-Downvote"></i><span>36</span></a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!--comment-->
+                    <% end %>
+                </div>
 
-  <span class="delete-comment">
-    <%= link_to 'delete', link_comment_path(@link, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
-  </span>
-<% end %>
-          </p>
-
-          <p>
-            <%= comment.body %>
-          </p>
         </div>
-      <% end %>
+            <div class="col-lg-3">
+                <aside class="sh-aside">
+                    <!--section-->
+                    Similar Posts Section
+
+                </aside>
+            </div>
+        </div>
     </div>
-  </div>
-</section>
-<div id="bookmarks">
-  <%= render partial: "bookmarks" %>
+</main>
 </div>

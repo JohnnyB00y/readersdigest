@@ -79,11 +79,11 @@
                             <!-- Upvote! -->
                             <% if user_signed_in? %>
                                 <% if !current_user.upvoted?(link) %>
-                               <%= link_to upvote_link_path(link), method: :post,  class: "sh-section__btn-upvote sh-btn-icon" do %>
+                               <%= link_to upvote_link_path(link), method: :post, remote: true, class: "sh-section__btn-upvote sh-btn-icon upvote" do %>
                                   <i class="fa fa-arrow-up" aria-hidden="true"></i><span><%= link.upvotes %></span>
                                 <% end %>
                                 <% else %>
-                                 <%= link_to upvote_link_path(link), method: :post,  class: "sh-section__btn-upvote sh-btn-icon" do %>
+                                 <%= link_to upvote_link_path(link), method: :post, remote: true, class: "sh-section__btn-upvote sh-btn-icon downvote" do %>
                                     <i class="fa fa-check" style="color: green;" aria-hidden="true"></i><span><%= link.upvotes %></span>
                                   <% end %>
                                 <% end %>

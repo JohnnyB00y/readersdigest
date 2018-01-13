@@ -108,7 +108,7 @@ def upvote
     current_user.upvote(link)
   end
   link.calc_hot_score
-  redirect_to root_path
+    head 204
 end
 
   private

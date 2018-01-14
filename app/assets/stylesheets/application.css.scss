@@ -2,6 +2,11 @@
 @import "styles";
 @import "font-awesome";
 @import "comments.scss";
+@import "litera/bootswatch";
+
+
+
+
 
 // search
 .search {
@@ -246,6 +251,10 @@ section {
 
 /// Section area SHAREHUB.
 
+.mainposts {
+  margin-top: 25px; 
+}
+
 .headsection {
   padding: 30px 30px 30px 30px;
   margin-bottom: 30px;
@@ -266,12 +275,17 @@ section {
 }
 
 .sh-section {
-  padding: 30px 30px 0;
-  margin-bottom: 30px;
+  padding: 15px 15px 0;
+  height: 140px;
+  margin-bottom: 15px;
   background-color: #ffffff;
   border-radius: 6px;
   -webkit-box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.1);
+}
+
+.sh-section:hover {
+  background-color: #337ab70a;
 }
 
 .sh-section__wrap {
@@ -282,10 +296,10 @@ section {
 }
 .sh-section__head,
 .sh-section__content {
-  border-bottom: solid 1px #f3f3f3;
+  // border-bottom: solid 1px #f3f3f3;
 }
 .sh-section__head {
-  padding-bottom: 30px;
+  padding-bottom: 20px;
   align-items: center;
   display: -moz-box;
   display: -ms-flexbox;
@@ -530,7 +544,8 @@ section {
 }
 .sh-section__footer {
   padding-top: 0px;
-  padding-bottom: 8px;
+
+  padding-bottom: 5px;
   flex-wrap: wrap;
   align-items: center;
   display: -moz-box;
@@ -543,15 +558,30 @@ section {
   }
 }
 
-
+.likecomment {
+  margin-left: auto;
+}
 .sh-section__footer .sh-btn-icon {
   margin-top: 10px;
+  margin-left: 3px;
 }
+
+.sh-btn-icon {
+  border-radius: 3px;
+  margin: 1px 1px 1px 1px;
+
+  color: #337ab7;
+  transition: color 2s;
+}
+.sh-btn-icon:hover {
+
+  color: #337ab7;
+}
+
 .sh-section__btn-upvote,
 .sh-section__btn-downvote,
 .sh-section__btn-repost,
 .sh-section__btn-like,
-.sh-section__btn-comment,
 .sh-section__btn-stat,
 .sh-section__btn-options {
   margin-right: 30px;
@@ -650,7 +680,7 @@ section {
 // header
 
   .sh-content-head {
-  padding-top: 26px;
+  padding-top: 6px;
   padding-bottom: 26px;
   align-items: center;
   flex-wrap: wrap;

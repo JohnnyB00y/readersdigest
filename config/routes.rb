@@ -17,6 +17,6 @@ Rails.application.routes.draw do
 
   get '/search' => 'searches#search'
 
-devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', sessions: 'sessions' }
+devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'}
 resources :users
 end

@@ -10,7 +10,6 @@ $(function(){
 
 	function handleUpvote(btn){
 		var voteCount = parseInt(btn.find('span').html()) + 1;
-
 		btn.empty();
 		btn.html('<i class="fa fa-check" style="color: green;" aria-hidden="true"></i><span>'+ voteCount + '</span>');
 		btn.addClass('downvote');
@@ -19,7 +18,6 @@ $(function(){
 
 	function handleDownvote(btn){
 		var voteCount = parseInt(btn.find('span').html()) - 1;
-
 		btn.empty();
 		btn.html('<i class="fa fa-arrow-up" aria-hidden="true"></i><span>'+ voteCount + '</span>');
 		btn.addClass('upvote');

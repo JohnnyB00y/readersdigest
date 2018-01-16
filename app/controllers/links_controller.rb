@@ -50,7 +50,7 @@ def create
   end
 
 def index
-  @tags = Link.tag_counts_on(:tags)
+  @tags = Link.tag_counts_on(:tags).limit(10)
   if params[:tag]
     @links = Link.hottest.tagged_with(params[:tag])
   else

@@ -1,12 +1,32 @@
 
 <div class="container">	
 	<div class="box">
-<h2> 
-            <img class="rounded" style="height:50px" src="<%= @user.image%>" alt="Generic placeholder image">
+		<h2> 
+			<img class="rounded" style="height:50px" src="<%= @user.image%>" alt="Generic placeholder image">
+			<%= @user.first_name%><% "" %> <%= @user.last_name %>'s profile page.
+		</h2>
 
-<%= @user.first_name%><% "" %> <%= @user.last_name %>'s profile page.</h2>
-
+	<div >
+	<span id="followerscount">	<%= @user.follower_count %> </span>
+			<% if @user == current_user && user_signed_in?%>
+			  <%= link_to 'Edit Profile', edit_user_registration_path(@user), class: 'btn edit-button' %>
+			<% else %>
+			  <% if current_user_is_following(current_user.id, @user.id) %>
+			    <%= link_to 'Following', unfollow_user_path(@user.id), remote: true,
+			      class: 'btn unfollow-button',
+			      id: 'unfollow-button',
+			      method: :post %>
+			  <% else %>
+			    <%= link_to 'Follow', follow_user_path(@user.id), remote: true,
+			      class: 'btn follow-button',
+			      id: 'follow-button',
+			      method: :post %>
+			    <% end %>
+			<% end %>
+	</div>
+	</div>
 </div>
+		
 
 <br>
 <br>
@@ -22,6 +42,6 @@
 
 	</div>
 
-		<div class="box">
-
-<h4> <%= @user.first_name %>'s Bookmarks!</h4>
+<div class="box">
+	<h4> <%= @user.first_name %>'s Bookmarks!</h4>
+</div>

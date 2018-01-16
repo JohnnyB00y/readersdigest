@@ -17,3 +17,42 @@
 //= require turbolinks
 //= require_tree .
 
+
+$(function(){
+	$(".follow-button, .unfollow-button").on("ajax:success", function(){
+		var elt = $(this);
+		if ($(this).hasClass('follow-button')){
+			handleFollow(elt);
+		} else {
+			handleUnfollow(elt);
+		}
+	});
+
+	function handleFollow(btn){
+		var followscount = parseInt($("#followerscount").text()) + 1;
+		console.log(followscount)
+		$("#followerscount").text(followscount)
+		var followurl = btn.attr('href').replace("follow", "unfollow")
+		btn.empty();
+		btn.attr('href', followurl);
+		btn.html('Unfollow');
+		btn.addClass('unfollow-button');
+		btn.removeClass('follow-button');
+	}
+
+	function handleUnfollow(btn){
+		var followscount = parseInt($("#followerscount").text()) - 1;
+		console.log(followscount)
+
+		$("#followerscount").text(followscount)
+		var unfollowurl = btn.attr('href').replace("unfollow", "follow")
+
+		btn.empty();
+		btn.attr('href', unfollowurl);
+		btn.html('Follow');
+		btn.addClass('follow-button');
+		btn.removeClass('unfollow-button');
+	}
+
+})
+

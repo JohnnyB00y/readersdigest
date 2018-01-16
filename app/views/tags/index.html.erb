@@ -1,2 +1,149 @@
-<h1>Tags</h1>
-<%= render @tags %>
+
+
+
+  <!--content head-->
+  <% if !user_signed_in? %>
+    <div class="headsection">
+      <div class = "container">
+        <div class="row">
+            <div class="col-sm-9">
+              <div class="sh-content-head">
+                  <h1 style="margin: 10px 35px 0px;">Discover</a> awesome content from around the web, sorted by
+                      <div class="sh-content-head__popularity-btn">
+                          <span>popularity</span>
+                          <div class="sh-content-head__popularity-content">
+                              <div class="sh-content-head__popularity-head">
+                                  <span>Popularity</span>
+                                  <span>Currently Selected</span>
+                              </div>
+                              <div class="sh-content-head__popularity-body">
+                                  <ul>
+                                      <li><a href="#">Newest first</a></li>
+                                      <li><a href="#">Highest scoring</a></li>
+                                  </ul>
+                                                  
+                              </div>
+                          </div>
+                              </div>
+                              </h1>
+                              <p class="frontpagetext">
+                                <br>
+                              Elephanzo surfaces the best new products, every day. It's a place for product-loving enthusiasts to share and geek out about the latest mobile apps, websites, hardware projects, and tech creations.</p>
+                    </div>
+              </div>
+
+              <div class="col-sm-3">
+                <img src="https://openclipart.org/image/2400px/svg_to_png/217000/happy-elephant-running.png" class="rounded" style="width:250px; height: 250px">
+              </div>
+            </div>
+        </div>
+    </div>
+    <% end %>
+            <!--sections-->
+
+
+ <!--sections-->
+ <div class="mainposts">
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+            <div class="tagsection">
+              <div class="box">
+
+                <h3 class="lead">Most Popular Tags</h3>
+                <ul>
+          		<% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+            <li> <%= link_to tag.name, { :action => :index, :tag => tag.name  }, :class => css_class %> </li>
+              <% end %>
+                </ul>
+
+              </div>
+          </div>
+    </div>
+        
+
+    <div class="col-md-8">
+                <% @links.each do |link|  %>
+                <div class="sh-section__item ">
+                    <div class="sh-section">
+                        <div class="sh-section__head">
+                            <a href="single_post.html" class=""><img class="sh-section__avatar sh-avatar rounded" src="<%= link.image %>" alt=""></a>
+                            <div>
+                                <a href="#" class="sh-section__name"><%= link_to link.title, (link.url? ? link.url : link), style: "text_decoration: none!" %></a>
+                                <span class="sh-section__passed"><%=  link.description %></span>
+
+                            </div>
+<!--                             <a href="#" class="sh-section__link sh-btn-icon"><i class="fa fa-link" aria-hidden="true"></i></a>  --> 
+                        </div>
+                               <!--   <div class="sh-section__content"> 
+                                time_ago_in_words(link.created_at)   ago
+                                link.description 
+                                </div> -->
+                        <div class="sh-section__footer">
+                                                          <%= render link.tags %>
+
+                            <!-- Upvote! -->
+
+                                <div class="metadata">
+                                  <span class="time-created">
+                                    <% if user_signed_in? && current_user.owns_link?(link) %>
+                                  <span class="edit-link">
+                                    <%= link_to "edit", edit_link_path(link) %>
+                                  </span>
+
+                                  <span class="delete-link">
+                                    <%= link_to "delete", link, method: :delete, data: { confirm: "Are you sure?" } %>
+                                  </span>
+                                <% end %>
+                                  </span>
+                              </div>
+<!--                           <a href="#" class="sh-section__btn-share sh-btn-icon"><i class="fa fa-share-alt" aria-hidden="true"></i></a> -->
+
+
+                          <div class="likecomment">
+                            <!-- <a href="#" class="sh-section__btn-like sh-btn-icon"><i class="fa fa-heart" aria-hidden="true"></i><span>1,274</span></a> -->
+                            <%= link_to link_path(link), class: "sh-section__btn-comments sh-btn-icon text-right" do %>
+                              <i class="fa fa-comments" aria-hidden="true"></i><span><%= link.comment_count %></span>
+                            <% end %>
+                                                          <% if user_signed_in? %>
+                                <% if !current_user.upvoted?(link) %>
+                               <%= link_to upvote_link_path(link), method: :post, remote: true, class: "sh-section__btn-share sh-btn-icon upvote" do %>
+                                  <i class="fa fa-arrow-up" aria-hidden="true"></i><span><%= link.upvotes %></span>
+                                <% end %>
+                                <% else %>
+                                 <%= link_to upvote_link_path(link), method: :post, remote: true, class: "sh-section__btn-share sh-btn-icon downvote" do %>
+                                    <i class="fa fa-check" style="color: green;" aria-hidden="true"></i><span><%= link.upvotes %></span>
+                                  <% end %>
+                                <% end %>
+                            <% end %>
+                            <!-- Upvote end -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+                <!--section-->
+      </div>
+    <div>
+      
+
+    </div> 
+
+    <div class="col-md-2">
+            <div class="tagsection">
+              <div class="box">
+                <h2 class="lead">Buy it now!</h2>
+                <br>
+                <img src="http://www.identitynetwork.net/images/30quicktips.jpg" class="img-rounded" alt="Cinque Terre" style="width: 100px">
+             
+              </div>
+          </div>
+
+          <div class="container_d1640"><ul class="list_85b5a"><li class="item_e4bce"><a href="https://blog.producthunt.com">Blog</a></li><li class="item_e4bce"><a href="/newsletter">Newsletter</a></li><li class="item_e4bce"><a href="/live">LIVE Chats</a></li><li class="item_e4bce"><a href="/apps">Apps</a></li><li class="item_e4bce"><a href="/about">About</a></li><li class="item_e4bce"><a href="https://help.producthunt.com">FAQ</a></li><li class="item_e4bce"><a href="/meetups">Meetups</a></li><li class="item_e4bce"><a href="/tos">Terms</a></li><li class="item_e4bce"><a href="/privacy">Privacy</a></li></ul><div class="copyright_9f354">© 2018 Johnny & Lameece </div></div>
+    </div>
+        
+
+
+</div>
+</div>
+</div>
